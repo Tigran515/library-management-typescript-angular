@@ -9,12 +9,8 @@ import {AuthService} from "@auth0/auth0-angular";
 export class AppComponent {
   title: string;
 
-  constructor(private authService: AuthService) {
+  constructor(public auth: AuthService) { //@TODO: injection can be removed
     this.title = 'Welcome to The Quiet Corner Library';
   }
 
-  loginWithRedirect() {
-    this.authService.loginWithRedirect();
-
-  }
 }

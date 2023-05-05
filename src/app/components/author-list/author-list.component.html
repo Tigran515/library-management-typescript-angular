@@ -1,0 +1,25 @@
+<p>author-list works!</p>
+<div class="card my-5">
+<!--  create an component of card and delete this all from here-->
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark"> Catalog
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Full name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let author of authors.slice(0, 20); let i=index">
+        <td>{{i + 1}}</td>
+        <td><a href="#" class="card-link">{{author.name}} {{author.sname}} {{author.lname}}</a>
+          <span *ngIf="auth.isAuthenticated$ | async">
+          <button style="margin-left: 20px" type="button" class="btn btn-primary">Edit</button>
+          <button style="margin-left: 20px" type="button" class="btn btn-primary">Delete</button>
+          </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

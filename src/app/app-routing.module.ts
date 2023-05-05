@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AuthorListComponent} from "./author-list/author-list.component";
+import {AuthorListComponent} from "./components/author-list/author-list.component";
 import {RouterModule, Routes} from "@angular/router";
-import {BookListComponent} from "./book-list/book-list.component";
+import {BookListComponent} from "./components/book-list/book-list.component";
 
 const ROUTES: Routes = [
   {path: 'authors', component: AuthorListComponent},
