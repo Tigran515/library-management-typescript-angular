@@ -7,7 +7,7 @@ import {AuthService} from "@auth0/auth0-angular";
   selector: 'app-author-list',
   templateUrl: './author-list.component.html',
   styleUrls: ['./author-list.component.css'],
-  providers: [AuthorService]
+  providers: [AuthorService]  //@TODO: is it necessary to keep it here ?
 })
 export class AuthorListComponent implements OnInit {
   authors: Author[] = [];
