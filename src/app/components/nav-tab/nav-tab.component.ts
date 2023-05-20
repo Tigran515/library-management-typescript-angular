@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-nav-tab',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class NavTabComponent {
 
-  constructor() {}
+  constructor() {
+  }
+
+  activeLink: string | undefined;
+  background: ThemePalette = undefined;
 
 }

@@ -1,2 +1,17 @@
-<p>header works!</p>
-<app-login></app-login>
+<header class="header-container">
+  <div class="container">
+    <div class="user-profile">
+      <div *ngIf="auth.user$ | async as user">
+        <h2>Welcome</h2>
+        <span>{{ user.email }}</span>
+      </div>
+    </div>
+
+    <div class="login-wrapper">
+      <app-login></app-login>
+    </div>
+  </div>
+  <div class="nav-tab">
+    <app-nav-tab></app-nav-tab>
+  </div>
+</header>

@@ -7,6 +7,12 @@ export const environment = {
     AUDIENCE:'https://library-api.com'
   },
   server:{
-    URL:'http://localhost:8888' //@TODO: handle
-  }
+    URL:'http://localhost:8888'
+  },
+  allowedURLs: [
+    '/authors/post',
+    '/authors/delete/*',
+    '/books/post',
+    '/books/delete/*'
+  ]
 };

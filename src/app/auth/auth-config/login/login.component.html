@@ -1,18 +1,11 @@
-
-<header style="margin-top: 20px">
+<header>
   <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-    <button class="btn btn-warning" (click)="auth.logout()">
+    <button mat-raised-button color="accent" (click)="auth.logout()">
       Log out
     </button>
   </div>
 
   <ng-template #loggedOut>
-    <button class="btn btn-primary" (click)="auth.loginWithRedirect()">Log in</button>
+    <button mat-raised-button color="primary" (click)="auth.loginWithRedirect()">Log in</button>
   </ng-template>
-  <div>
-    <div *ngIf="auth.user$ | async as user">
-      <h2>Welcome</h2>
-      <p>{{ user.email }}</p>
-    </div>
-  </div>
 </header>

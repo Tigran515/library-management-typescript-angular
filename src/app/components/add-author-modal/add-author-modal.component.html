@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Add Author</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="authorForm">
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Last Name" formControlName="lname"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Sure Name" formControlName="sname"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Born" formControlName="born"/>
+    </mat-form-field>
+    <br>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button class="mat-raised-button"
+          mat-button
+          color="primary"
+          [disabled]="!authorForm.valid"
+          (click)="save()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

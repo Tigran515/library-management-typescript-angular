@@ -1,36 +1,35 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AuthorListComponent} from "./author-list.component";
-import {AuthorService} from "../../service/author.service";
-import {AuthorListRoutingModule} from "./author-list-routing.module";
+
+import {BookListRoutingModule} from './book-list-routing.module';
+import {BookListComponent} from "./book-list.component";
+import {BookService} from "../../service/book.service";
 import {MatTableModule} from "@angular/material/table";
-import {AddAuthorModalModule} from "../add-author-modal/add-author-modal.module";
-import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {AddBookModalModule} from "../add-book-modal/add-book-modal.module";
+import {AuthorService} from "../../service/author.service";
 import {ConfirmationDialogModule} from "../confirmation-dialog/confirmation-dialog.module";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
-    AuthorListComponent
+    BookListComponent
   ],
   imports: [
     CommonModule,
-    AuthorListRoutingModule,
+    BookListRoutingModule,
     MatTableModule,
-    AddAuthorModalModule,
-    ConfirmationDialogModule,
-    MatDialogModule,
     MatIconModule,
     MatButtonModule,
-    MatSnackBarModule,
+    AddBookModalModule,
+    ConfirmationDialogModule,
     MatProgressSpinnerModule
   ],
   providers: [
-    AuthorService,
+    BookService,
+    AuthorService
   ]
 })
-export class AuthorListModule {
+export class BookListModule {
 }
