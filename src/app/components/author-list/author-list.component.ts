@@ -5,6 +5,7 @@ import {AuthService} from "@auth0/auth0-angular";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AddAuthorModalComponent} from "../add-author-modal/add-author-modal.component";
 import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-dialog.component";
+import {EditAuthorModalComponent} from "../edit-author-modal/edit-author-modal.component";
 
 @Component({
   selector: 'app-author-list',
@@ -20,10 +21,6 @@ export class AuthorListComponent implements OnInit {
   };
 
   ngOnInit() {
-    // this.authorService.findAll().subscribe((response: any) => {
-    //   this.authors = response.content;
-    //   this.isLoading = false;
-    // });
     this.fetchAuthorList();
   };
 
@@ -61,11 +58,26 @@ export class AuthorListComponent implements OnInit {
 
   };
 
+  openEditAuthorDialog(id: number) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {id:id};
+    const dialogRef = this.dialog.open(EditAuthorModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((saved: boolean) => {
+      if (saved) {
+        this.fetchAuthorList();
+      }
+    });
+  }
+
   fetchAuthorList() {
     this.authorService.findAll().subscribe((response: any) => {
       this.authors = response.content;
       this.isLoading = false;
     });
   };
+
 
 }
