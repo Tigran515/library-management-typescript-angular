@@ -12,6 +12,8 @@ export const environment = {
   allowedURLs: [
     '/authors/post',
     '/authors/delete/*',
+    '/authors/update/*',
+    '/authors/author/*',
     '/books/post',
     '/books/delete/*'
   ]
