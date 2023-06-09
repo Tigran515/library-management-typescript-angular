@@ -11,6 +11,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {ConfirmationDialogModule} from "../confirmation-dialog/confirmation-dialog.module";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {EditAuthorModalModule} from "../edit-author-modal/edit-author-modal.module";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     AuthorListRoutingModule,
     MatTableModule,
     AddAuthorModalModule,
+    EditAuthorModalModule,
     ConfirmationDialogModule,
     MatDialogModule,
     MatIconModule,
