@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Edit author</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name"/>
+      <mat-error *ngIf="form.get('name')?.hasError('required')">
+        Name is required.
+      </mat-error>
+      <mat-error *ngIf="form.get('name')?.hasError('pattern')">
+        Name should only contain alphabetical characters.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Last Name" formControlName="lname"/>
+      <mat-error *ngIf="form.get('lname')?.hasError('required')">
+        Last Name is required.
+      </mat-error>
+      <mat-error *ngIf="form.get('lname')?.hasError('pattern')">
+        Last Name should only contain alphabetical characters.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Sure Name" formControlName="sname"/>
+      <mat-error *ngIf="form.get('sname')?.hasError('required')">
+        Sure Name is required.
+      </mat-error>
+      <mat-error *ngIf="form.get('sname')?.hasError('pattern')">
+        Sure Name should only contain alphabetical characters.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Born" formControlName="born"/>
+      <mat-error *ngIf="form.get('born')?.hasError('required')">
+        Born is required.
+      </mat-error>
+      <mat-error *ngIf="form.get('born')?.hasError('pattern')">
+        Born should be a number.
+      </mat-error>
+    </mat-form-field>
+    <br>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button class="mat-raised-button"
+          mat-button
+          color="primary"
+          [disabled]="!form.valid"
+          (click)="updateForm()">Update
+  </button>
+</mat-dialog-actions>
