@@ -14,9 +14,7 @@ import {AuthorService} from "../../service/author.service";
 export class AddBookModalComponent implements OnInit {
   bookForm!: FormGroup;
   authors: Author[] = [];
-
-  // authorControl = new FormControl<Author | null>(null, Validators.required);
-
+  confirmed: Author[] = [];
 
   constructor(private bookService: BookService,
               private authorService: AuthorService,
@@ -27,7 +25,6 @@ export class AddBookModalComponent implements OnInit {
   ngOnInit(): void {
     this.authorService.findAll().subscribe((response: any) => {
       this.authors = response.content;
-      console.log("authors response " + response.content)
     });
     this.bookForm = this.fb.group({
       title: ['', [Validators.required]],
@@ -57,5 +54,4 @@ export class AddBookModalComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
-
 }
