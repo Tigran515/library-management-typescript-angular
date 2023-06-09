@@ -13,8 +13,8 @@
     <mat-form-field>
       <input matInput placeholder="ISBN" formControlName="isbn"/>
     </mat-form-field>
-<!--    <mat-error *ngIf="bookForm.get('isbn')?.hasError('required')">ISBN is required</mat-error>-->
-<!--    <mat-error *ngIf="bookForm.get('isbn')?.hasError('pattern')">ISBN should contain 13 digits</mat-error>-->
+    <!--    <mat-error *ngIf="bookForm.get('isbn')?.hasError('required')">ISBN is required</mat-error>-->
+    <!--    <mat-error *ngIf="bookForm.get('isbn')?.hasError('pattern')">ISBN should contain 13 digits</mat-error>-->
     <br>
     <!--    authorId selector-->
     <mat-form-field appearance="fill">
@@ -26,6 +26,11 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <app-custom-listbox [source]="authors" [(destination)]="confirmed" display="name" key="id"></app-custom-listbox>
+    <!--    <div>-->
+    <!--      <app-custom-listbox [source]="authors" [(destination)]="confirmed" display="name" key="id" ></app-custom-listbox>-->
+    <!--    </div>-->
   </form>
 </mat-dialog-content>
 
@@ -39,4 +44,3 @@
     Save
   </button>
 </mat-dialog-actions>
-
