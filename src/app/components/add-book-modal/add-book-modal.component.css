@@ -7,3 +7,8 @@ textarea {
   height: 100px;
   resize: vertical;
 }
+
+mat-dialog-content{
+  width: 500px;
+  height: 500px;
+}

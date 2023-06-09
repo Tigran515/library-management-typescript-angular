@@ -7,3 +7,12 @@ textarea {
   height: 100px;
   resize: vertical;
 }
+
+mat-dialog-content{
+  width: 450px;
+  height: 500px;
+}
+
+mat-form-field{
+  width: 400px;
+}
