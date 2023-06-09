@@ -7,7 +7,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
-
+import {AngularDualListBoxModule} from 'angular-dual-listbox';
+import {CustomListboxModule} from "../custom-listbox/custom-listbox.module";
 
 @NgModule({
   declarations: [AddBookModalComponent],
@@ -18,7 +19,9 @@ import {MatSelectModule} from "@angular/material/select";
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    AngularDualListBoxModule,
+    CustomListboxModule
   ],
   exports: [AddBookModalComponent]
 })
