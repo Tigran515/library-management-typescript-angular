@@ -21,10 +21,10 @@ export class AddAuthorModalComponent implements OnInit { //@TODO: rename the com
 
   ngOnInit(): void {
     this.authorForm = this.fb.group({
-      name: ['', [Validators.required]],
-      lname: ['', [Validators.required]],
-      sname: ['', [Validators.required]],
-      born: ['', [Validators.required, Validators.maxLength(4)]]
+      name: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
+      lname: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
+      sname: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
+      born: ['', [Validators.required, Validators.maxLength(4),Validators.pattern(/^[0-9]+$/)]]
     });
   };
 
@@ -36,7 +36,7 @@ export class AddAuthorModalComponent implements OnInit { //@TODO: rename the com
         this.authorForm.value.sname,
         this.authorForm.value.born);
 
-      this.authorService.addAuthor(NEW_AUTHOR).subscribe((result: Author) => {
+      this.authorService.addAuthor(NEW_AUTHOR).subscribe(() => {
         this.dialogRef.close(true);
       })
     } else {
