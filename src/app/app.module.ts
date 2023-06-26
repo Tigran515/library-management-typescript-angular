@@ -5,8 +5,7 @@ import {AppComponent} from './app.component';
 import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {AuthHttpInterceptor, AuthModule} from "@auth0/auth0-angular";
-import {Auth0ConfigModule} from './auth/auth-config/auth0-config.module';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTabsModule} from "@angular/material/tabs";
 import {HeaderModule} from "./layout/header/header.module";
@@ -17,7 +16,7 @@ import {HeaderModule} from "./layout/header/header.module";
   ],
   imports: [//ModuleA,ModuleB,ModuleC
     BrowserModule,
-    Auth0ConfigModule,
+    // Auth0ConfigModule,
     AppRoutingModule,
     HttpClientModule,
     RouterOutlet,
@@ -28,12 +27,12 @@ import {HeaderModule} from "./layout/header/header.module";
 ////
   ],
   exports: [], //PublicComponent,PublicDirective,PublicPipe
-  providers: [ // Service,Guard
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthHttpInterceptor,
-      multi: true
-    }],
+  // providers: [ // Service,Guard
+  //   {
+  //     provide: HTTP_INTERCEPTORS,
+  // //    useClass: AuthHttpInterceptor,
+  //     multi: true
+  //   }],
   bootstrap: [AppComponent] //defines a component that's used to initially load your application
 })
 export class AppModule {

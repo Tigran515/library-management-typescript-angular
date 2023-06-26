@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Book} from "../../model/book";
 import {BookService} from "../../service/book.service";
-import {AuthService} from "@auth0/auth0-angular";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AddBookModalComponent} from "../add-book-modal/add-book-modal.component";
 import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-dialog.component";
@@ -15,7 +14,7 @@ export class BookListComponent {
   books: Book[] = [];
   isLoading: boolean = true;
 
-  constructor(private bookService: BookService, public auth: AuthService, private dialog: MatDialog) {
+  constructor(private bookService: BookService, private dialog: MatDialog) {
   };
 
   ngOnInit() {

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import {AuthService} from "@auth0/auth0-angular";
 export class AppComponent {
   title: string;
 
-  constructor(public auth: AuthService) { //@TODO: injection can be removed
+  constructor() { //@TODO: injection can be removed
     this.title = 'Welcome to The Quiet Corner Library';
   }
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Author} from "../../model/author";
 import {AuthorService} from "../../service/author.service";
-import {AuthService} from "@auth0/auth0-angular";
+// import {AuthService} from "@auth0/auth0-angular";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AddAuthorModalComponent} from "../add-author-modal/add-author-modal.component";
 import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-dialog.component";
@@ -16,8 +16,7 @@ export class AuthorListComponent implements OnInit {
   authors: Author[] = [];
   isLoading: boolean = true;
 
-  constructor(public authorService: AuthorService, public auth: AuthService
-    , private dialog: MatDialog) {
+  constructor(public authorService: AuthorService, private dialog: MatDialog) {
   };
 
   ngOnInit() {
