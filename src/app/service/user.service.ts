@@ -10,9 +10,22 @@ import {User} from "../model/user";
 export class UserService {
   private host = environment.server.URL;
 
-  constructor(private http: HttpClient) {}
-
-  public getUsers(): Observable<User[] | HttpErrorResponse>{
-    return this.http.get<User[]>(`${this.host}`)
+  constructor(private http: HttpClient) {
   }
+
+
+  //create methods for the future integration
+
+  // public getUsers(): Observable<User[] | HttpErrorResponse>{
+  //   return this.http.get<User[]>(`${this.host}`)
+  // }
+
+  // public addUser()
+  //public updateUser()
+  //public deactivateUser()
+
+  // public addUsersToLocalCache(user: User[]): void{
+// }
+  // public getUsersFromLocalCache(user: User[]): void{
+
 }

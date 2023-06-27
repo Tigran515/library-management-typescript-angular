@@ -11,7 +11,7 @@ import {JwtHelperService} from "@auth0/angular-jwt"; //using as Standalone
   }
 )
 export class AuthenticationService {
-  private host = environment.server.URL;
+  public host = environment.server.URL; //changed to public for the Interceptor
   private token: string | null | undefined;  //@TODO: alternative Initialize the token property in the constructor. this.token = null;
   private loggedInUsername: string | null | undefined;
   private jwtHelper = new JwtHelperService(); //using as Standalone
@@ -86,7 +86,7 @@ export class AuthenticationService {
   public isLoggedIn(): boolean {
     this.loadToken();
 
-    if (this.token != null && this.token !== '') {
+    if (this.token != null && this.token !== '') { //@TODO: manage this nested statements
       if (this.jwtHelper.decodeToken(this.token).sub != null || '') {
         if (!this.jwtHelper.isTokenExpired(this.token)) { //can be in the same line in previous statement
           this.loggedInUsername = this.jwtHelper.decodeToken(this.token).sub;

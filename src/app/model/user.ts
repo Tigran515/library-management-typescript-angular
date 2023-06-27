@@ -1,19 +1,13 @@
-export class User{}
+export class User {
+  login: string; //username
+  name: string;
+  lastName: string;
+  sureName: string;
 
-
-
-
-// export class Author {
-//   id: number | undefined;
-//   name: string;
-//   lname: string;
-//   sname: string;
-//   born: number
-//
-//   constructor(name: string, lname: string, sname: string, born: number) {
-//     this.name = name;
-//     this.lname = lname;
-//     this.sname = sname;
-//     this.born = born;
-//   }
-// }
+  constructor(login: string, name: string, lastName: string, sureName: string) {
+    this.login = login;
+    this.name = name;
+    this.lastName = lastName;
+    this.sureName = sureName;
+  }
+}

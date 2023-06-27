@@ -27,12 +27,14 @@ import {HeaderModule} from "./layout/header/header.module";
 ////
   ],
   exports: [], //PublicComponent,PublicDirective,PublicPipe
+
   // providers: [ // Service,Guard
   //   {
   //     provide: HTTP_INTERCEPTORS,
   // //    useClass: AuthHttpInterceptor,
   //     multi: true
   //   }],
+
   bootstrap: [AppComponent] //defines a component that's used to initially load your application
 })
 export class AppModule {
