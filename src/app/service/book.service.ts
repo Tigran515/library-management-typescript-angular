@@ -9,14 +9,14 @@ import {ErrorHandlerService} from "./error-handler.service";
 @Injectable()
 export class BookService {
 
-  private booksUrl: string;
+  public booksURL: string;  // @TODO: make private again
 
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService) {
-    this.booksUrl = environment.server.URL + "/books";
+    this.booksURL = environment.server.HOST + "/books";
   }
 
   public findAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.booksUrl);
+    return this.http.get<Book[]>(this.booksURL);
   };
 
   public addBook(book: Book, authorId: number): Observable<Book> {
@@ -24,12 +24,12 @@ export class BookService {
       bookDTO: book,
       authorId: authorId
     };
-    return this.http.post<Book>(this.booksUrl + "/post", requestBody)
+    return this.http.post<Book>(this.booksURL + "/post", requestBody)
       .pipe(catchError(this.errorHandlerService.handleError<Book>('addBook', book)));
   };
 
   public deleteBook(id: number): Observable<unknown> {
-    const url = `${this.booksUrl}/delete/${id}`;
+    const url = `${this.booksURL}/delete/${id}`;
     console.log("deleteBook ID: " + id + " url " + url);
     return this.http.delete(url).pipe(
       catchError(this.errorHandlerService.handleError('deleteBookAndAuthor'))

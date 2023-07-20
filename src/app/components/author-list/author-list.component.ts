@@ -6,6 +6,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AddAuthorModalComponent} from "../add-author-modal/add-author-modal.component";
 import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-dialog.component";
 import {EditAuthorModalComponent} from "../edit-author-modal/edit-author-modal.component";
+import {AuthenticationService} from "../../service/authentication.service";
 
 @Component({
   selector: 'app-author-list',
@@ -16,7 +17,7 @@ export class AuthorListComponent implements OnInit {
   authors: Author[] = [];
   isLoading: boolean = true;
 
-  constructor(public authorService: AuthorService, private dialog: MatDialog) {
+  constructor(public authorService: AuthorService, private dialog: MatDialog, public auth: AuthenticationService) {
   };
 
   ngOnInit() {
@@ -61,7 +62,7 @@ export class AuthorListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = {id:id};
+    dialogConfig.data = {id: id};
     const dialogRef = this.dialog.open(EditAuthorModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((saved: boolean) => {

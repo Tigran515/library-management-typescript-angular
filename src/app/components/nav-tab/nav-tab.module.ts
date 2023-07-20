@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NavTabComponent} from "./nav-tab.component";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 import {MatTabsModule} from "@angular/material/tabs";
 
 
@@ -11,7 +11,8 @@ import {MatTabsModule} from "@angular/material/tabs";
   imports: [
     CommonModule,
     RouterLink,
-    MatTabsModule
+    MatTabsModule,
+    RouterLinkActive
   ],
   exports:[NavTabComponent]
 })

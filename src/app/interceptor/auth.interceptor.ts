@@ -7,24 +7,35 @@ import {
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthenticationService} from "../service/authentication.service";
+import {AuthorService} from "../service/author.service";
+import {BookService} from "../service/book.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private authorService: AuthorService, private booksService: BookService) {
   }
 
   intercept(httpRequest: HttpRequest<any>, httpHandler: HttpHandler): Observable<HttpEvent<any>> {
     //if the current URL includes this login, we don't need to do anything with it, just return
-    if (httpRequest.url.includes(`${this.authService.host}/auth/authenticate`)) {
+    if (httpRequest.url.includes(`${this.authenticationService.host}/auth/authenticate`)) {
+      console.log("httpRequest is", httpRequest);
       return httpHandler.handle(httpRequest);
     }
     // do the same for reset password, register
 
-    this.authService.loadToken();
-    const TOKEN = this.authService.getToken();
-    const REQUEST = httpRequest.clone({setHeaders: { Authorization: `Bearer ${TOKEN}`}});
+    if (httpRequest.method === "GET" && httpRequest.url.includes(`${this.authorService.authorsURL}`)) {  //@TODO: write more strict
+      return httpHandler.handle(httpRequest);
+    }
 
+    if (httpRequest.method === "GET" && httpRequest.url.includes(`${this.booksService.booksURL}`)) {
+      return httpHandler.handle(httpRequest);
+    }
+
+    this.authenticationService.loadToken();
+    const TOKEN = this.authenticationService.getToken();
+    const REQUEST = httpRequest.clone({setHeaders: {Authorization: `Bearer ${TOKEN}`}}); //change to HeaderType.Authorization
+    console.log("request +token", REQUEST);
     return httpHandler.handle(REQUEST);
   }
 }

@@ -3,7 +3,10 @@ import {RouterModule, Routes} from "@angular/router";
 import {AuthorListComponent} from "./author-list.component";
 
 const ROUTES: Routes = [
-  {path: '', component: AuthorListComponent}
+  {path: '', component: AuthorListComponent
+
+    // ,canActivate:[authGuard]
+  }
 ];
 
 @NgModule({

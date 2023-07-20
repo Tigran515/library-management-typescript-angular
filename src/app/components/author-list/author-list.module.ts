@@ -12,11 +12,13 @@ import {ConfirmationDialogModule} from "../confirmation-dialog/confirmation-dial
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {EditAuthorModalModule} from "../edit-author-modal/edit-author-modal.module";
+import {AuthenticationService} from "../../service/authentication.service";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+// import {AuthorInterceptor} from "../../interceptor/author.interceptor";
+
 
 @NgModule({
-  declarations: [
-    AuthorListComponent
-  ],
+  declarations: [AuthorListComponent],
   imports: [
     CommonModule,
     AuthorListRoutingModule,
@@ -31,7 +33,13 @@ import {EditAuthorModalModule} from "../edit-author-modal/edit-author-modal.modu
     MatProgressSpinnerModule
   ],
   providers: [
-    AuthorService,
+    // AuthorService,  //it is injected in core.module (globally)
+
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthorInterceptor,
+    //   multi: true,
+    // },
   ]
 })
 export class AuthorListModule {

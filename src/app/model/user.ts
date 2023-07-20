@@ -1,13 +1,16 @@
 export class User {
-  login: string; //username
+  username: string; //username
   name: string;
-  lastName: string;
-  sureName: string;
+  lname: string;
+  sname: string;
+  role: string;
+  //active:boolean;
 
-  constructor(login: string, name: string, lastName: string, sureName: string) {
-    this.login = login;
+  constructor(username: string, name: string, lastName: string, sureName: string, role: string) {
+    this.username = username;
     this.name = name;
-    this.lastName = lastName;
-    this.sureName = sureName;
+    this.lname = lastName;
+    this.sname = sureName;
+    this.role = role;
   }
 }

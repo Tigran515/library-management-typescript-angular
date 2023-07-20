@@ -11,6 +11,8 @@ import {AddBookModalModule} from "../add-book-modal/add-book-modal.module";
 import {AuthorService} from "../../service/author.service";
 import {ConfirmationDialogModule} from "../confirmation-dialog/confirmation-dialog.module";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {AuthenticationService} from "../../service/authentication.service";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -27,8 +29,13 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatProgressSpinnerModule
   ],
   providers: [
-    BookService,
-    AuthorService
+    // BookService,   // injected in core.module
+    // AuthorService, // injected in core.module
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: BookInterceptor,
+    //   multi: true,
+    // },
   ]
 })
 export class BookListModule {

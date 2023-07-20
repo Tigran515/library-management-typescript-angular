@@ -9,7 +9,7 @@ export const environment = {
   // },
 
   server:{
-    URL:'http://localhost:8888'
+    HOST:'http://localhost:8888'
   },
   allowedURLs: [
     '/authors/post',
@@ -18,5 +18,5 @@ export const environment = {
     '/authors/author/*',
     '/books/post',
     '/books/delete/*'
-  ]
+  ],
 };

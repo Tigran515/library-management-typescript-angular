@@ -1,17 +1,19 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
+import {authGuard} from "./guard/auth.guard";
 
 const ROUTES: Routes = [
 
   {path: 'authors', loadChildren: () => import('./components/author-list/author-list.module').then(m => m.AuthorListModule)},
   {path: 'books', loadChildren: () => import('./components/book-list/book-list.module').then(m => m.BookListModule)},
+  {path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)},
+    // ,canActivate:[authGuard]},
+
   // {path: '', loadChildren: () => import('./layout/header/header.module').then(m => m.HeaderModule),pathMatch:'prefix'},
   // {path: '', loadChildren: () => import('./layout/footer/footer.module').then(m => m.FooterModule)},
-
-  {//is it necessary ?
+  {
     path: '',
-    redirectTo: '',
+    redirectTo: '/books',
     pathMatch: 'full'
   }
 ]

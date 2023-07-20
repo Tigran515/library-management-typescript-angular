@@ -8,7 +8,7 @@ import {User} from "../model/user";
   providedIn: 'root'
 })
 export class UserService {
-  private host = environment.server.URL;
+  private host = environment.server.HOST;
 
   constructor(private http: HttpClient) {
   }

@@ -1,9 +1,11 @@
 <nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel">
   <a mat-tab-link routerLink="/books"
+     routerLinkActive="active-books"
      (click)="activeLink = 'books'"
      [active]="activeLink == 'books'"> Books </a>
 
   <a mat-tab-link routerLink="/authors"
+     routerLinkActive="active-authors"
      (click)="activeLink = 'authors'"
      [active]="activeLink == 'authors'"> Authors </a>
 </nav>

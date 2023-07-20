@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {NavTabComponent} from "../../components/nav-tab/nav-tab.component";
-import {LoginComponent} from "../../auth/auth-config/login/login.component";
-import {AuthService} from "@auth0/auth0-angular";
+import {LoginButtonComponent} from "../../components/login-button/login-button.component";
 
 @Component({
   selector: 'app-header',
@@ -10,6 +9,6 @@ import {AuthService} from "@auth0/auth0-angular";
 })
 export class HeaderComponent {
 
-  constructor(public auth: AuthService) {
+  constructor() {
   }
 }

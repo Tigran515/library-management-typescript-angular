@@ -7,18 +7,18 @@ import {ErrorHandlerService} from "./error-handler.service";
 
 @Injectable()
 export class AuthorService {
-  private authorsUrl: string;
+  public authorsURL: string;
 
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService) {
-    this.authorsUrl = environment.server.URL + "/authors"; //@TODO: move the path's to the env ?
+    this.authorsURL = environment.server.HOST + "/authors"; //@TODO: this is not host only
   };
 
   public findAll(): Observable<Author[]> {
-    return this.http.get<Author[]>(this.authorsUrl);
+    return this.http.get<Author[]>(this.authorsURL);
   };
 
   public findById(id: number): Observable<Author> {
-    const URL = `${this.authorsUrl}/author/${id}`;
+    const URL = `${this.authorsURL}/author/${id}`; //@TODO memory waste!
 
     return this.http.get<Author>(URL).pipe(
       catchError(this.errorHandlerService.handleError<Author>(`findAuthor id=${id}`)));
@@ -26,12 +26,12 @@ export class AuthorService {
 
 
   public addAuthor(author: Author): Observable<Author> {  // The method returns an Observable that will emit an Author object.
-    return this.http.post<Author>(this.authorsUrl + "/post", author)
+    return this.http.post<Author>(this.authorsURL + "/post", author)
       .pipe(catchError(this.errorHandlerService.handleError<Author>('addAuthor', author)))
   };
 
   public updateAuthorFields(id: number, author: Author) {
-    const URL = `${this.authorsUrl}/update/${id}`;
+    const URL = `${this.authorsURL}/update/${id}`;
 
     return this.http.patch(URL, author).pipe(
       catchError(this.errorHandlerService.handleError('patchAuthor'))
@@ -39,7 +39,7 @@ export class AuthorService {
   };
 
   public deleteAuthor(id: number): Observable<unknown> {
-    const URL = `${this.authorsUrl}/delete/${id}`; //@TODO: remove string
+    const URL = `${this.authorsURL}/delete/${id}`; //@TODO: remove string
     console.log("deleteAuthor ID: " + id + " url " + URL);
     return this.http.delete(URL).pipe(
       catchError(this.errorHandlerService.handleError('deleteAuthor'))
