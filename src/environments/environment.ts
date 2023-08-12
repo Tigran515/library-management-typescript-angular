@@ -1,6 +1,5 @@
-
 export const environment = {
-  production:false,
+  production: false,
 
   // auth:{
   //   DOMAIN: 'dev-x7gyakoxxflu4bul.us.auth0.com',
@@ -8,8 +7,9 @@ export const environment = {
   //   AUDIENCE:'https://library-api.com'
   // },
 
-  server:{
-    HOST:'http://localhost:8888'
+  server: {
+    HOST: 'http://localhost:8888',
+    JWT_TOKEN:'JWT-Token'
   },
   allowedURLs: [
     '/authors/post',
@@ -19,4 +19,13 @@ export const environment = {
     '/books/post',
     '/books/delete/*'
   ],
+  authentication: {
+    TOKEN: 'token',  // //@TODO: rename the token for security reason
+    USER: 'user',
+    USERS: 'users',
+    USER_ROLE: {
+      ADMIN: 'admin',
+      USER: 'user'
+    }
+  }
 };

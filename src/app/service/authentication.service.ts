@@ -5,22 +5,23 @@ import {Observable, of, tap} from "rxjs";
 import {User} from "../model/user";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {AuthenticationRequestDto} from "../dto/authenticationRequest.dto";
-import {Router} from "@angular/router"; //using as Standalone
+import {Router} from "@angular/router";
+import {UserDto} from "../dto/UserDto"; //using as Standalone
 
 @Injectable({providedIn: 'root'})  // injected in the root
 
 export class AuthenticationService {
-  public host = environment.server.HOST; //changed to public for the Interceptor
+  public host: string = environment.server.HOST; //changed to public for the Interceptor
   private token: string | null | undefined;  //@TODO: alternative Initialize the token property in the constructor. this.token = null;
   private loggedInUsername: string | null | undefined;
-  private jwtHelper = new JwtHelperService(); //using as Standalone
+  private jwtHelper: JwtHelperService = new JwtHelperService(); //using as Standalone
 
   constructor(private http: HttpClient, private router: Router) {
   }
 
 //@TODO: parameter should be AuthenticationRequestDto , P.S. the fields are defined private
   public login(authenticationRequest: AuthenticationRequestDto): Observable<HttpResponse<User>> { //return type can be changed to authenticationRequest
-    return this.http.post<User>(`${this.host}/auth/authenticate`, authenticationRequest, {observe: 'response' }); // observe:`response` means return the whole http response body header also etc.
+    return this.http.post<User>(`${this.host}/auth/authenticate`, authenticationRequest, {observe: 'response'}); // observe:`response` means return the whole http response body header also etc.
   }
 
   // public login(user: User): Observable<HttpResponse<any> | HttpErrorResponse>{ //old version for the demo case
@@ -37,22 +38,22 @@ export class AuthenticationService {
   public logOut(): void {
     this.token = undefined;
     this.loggedInUsername = undefined;
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('users');
+    localStorage.removeItem(environment.authentication.USER);
+    localStorage.removeItem(environment.authentication.TOKEN);
+    localStorage.removeItem(environment.authentication.USERS);
   }
 
   public saveToken(token: string): void {
     this.token = token;
-    localStorage.setItem('token', token); //@TODO: rename token for security reason
+    localStorage.setItem(environment.authentication.TOKEN, token); //@TODO: rename token for security reason
   }
 
   public addUserToLocalCache(user: User): void {
-    localStorage.setItem('user', JSON.stringify(user)); //localStorage only accepts String
+    localStorage.setItem(environment.authentication.USER, JSON.stringify(user)); //localStorage only accepts String
   }
 
   public getUserFromLocalCache(): User | null {
-    const USER = localStorage.getItem('user');
+    const USER: string | null = localStorage.getItem(environment.authentication.USER);
 
     if (USER) {
       return JSON.parse(USER); //parses the long string to an object
@@ -61,14 +62,33 @@ export class AuthenticationService {
     }
   }
 
-  // public getUserFromLocalCache(): User { // original version
-  //   return JSON.parse(localStorage.getItem('user'));
-  // }
-
-  public isAdmin(): Observable<boolean> {
+  public getUserInformation(): UserDto | null {  // @FIXME: also an modelToDtoConverter can be written
+    if (!this.isLoggedIn()) {
+      return null;
+    }
     const USER: User | null = this.getUserFromLocalCache();
     if (USER) {
-      return of(USER && USER.role === 'admin');
+      return {
+        username: USER.username,
+        name: USER.name,
+        lname: USER.lname,
+        sname: USER.sname,
+      };
+    }
+    return null;
+  }
+
+  public isTokenExpired(token: string | null): boolean {
+    return this.jwtHelper.isTokenExpired(token);
+  }
+
+  public isAdmin(): Observable<boolean> {
+    if (!this.isLoggedIn()) {
+      return of(false);
+    }
+    const USER: User | null = this.getUserFromLocalCache();
+    if (USER) {
+      return of(USER && USER.role === environment.authentication.USER_ROLE.ADMIN);
     }
     return of(false);
   }
@@ -77,19 +97,8 @@ export class AuthenticationService {
     this.router.navigate(['/']);
   }
 
-// public isAdmin(): Observable<boolean> {  //org bar
-//   const USER = localStorage.getItem('user');
-//   if (USER) {
-//     const user = JSON.parse(USER);
-//     return of(user && user.role === 'admin');
-//   } else {
-//     return of(false);
-//   }
-// }
-
-
   public loadToken(): void {
-    this.token = localStorage.getItem('token'); //@TODO: rename 'token' to a more complex name for security reason
+    this.token = localStorage.getItem(environment.authentication.TOKEN); //@TODO: rename 'token' to a more complex name for security reason
   }
 
   public getToken(): string | null {
@@ -114,8 +123,7 @@ export class AuthenticationService {
           return true;
         }
       }
-    } else
-    {
+    } else {
       this.logOut();
       return false;
     }

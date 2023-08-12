@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 
 
-import { CustomListboxComponent } from './custom-listbox.component';
+import { CustomListBoxComponent } from './custom-list-box.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 
@@ -16,10 +16,10 @@ import {MatButtonModule} from "@angular/material/button";
     MatButtonModule
   ],
   declarations: [
-    CustomListboxComponent
+    CustomListBoxComponent
   ],
   exports: [
-    CustomListboxComponent
+    CustomListBoxComponent
   ]
 })
 export class CustomListboxModule { }

@@ -1,5 +1,5 @@
 <div class="dual-list">
-  <div class="listbox">
+  <div class="list-box">
     <p>{{sourceName}}</p>
     <div class="record-picker">
       <ul [ngStyle]="{'max-height': height, 'min-height': height}" [ngClass]="{over:available.dragOver}"
@@ -10,35 +10,36 @@
             draggable="true" (dragstart)="drag($event, item, available)" (dragend)="dragEnd(available)"
         >
           <label>{{item._name}}</label>
+          <label>{{item._lname}}</label>
         </li>
       </ul>
     </div>
   </div>
 
-  <div class="buttonbox">
-    <button mat-fab extended color="primary" (click)="moveItem(available, confirmed)"
+  <div class="button-box">
+    <button mat-mini-fab color="primary" (click)="moveItem(available, confirmed)"
             [disabled]="available.pick.length === 0"><i class="fa fa-arrow-right"></i>
-      <mat-icon>add_circle</mat-icon>
+      <mat-icon color="accent">add_circle_outline</mat-icon>
     </button>
 
-    <button mat-fab extended color="primary" (click)="moveItem(confirmed, available)"
+    <button mat-mini-fab color="primary" (click)="moveItem(confirmed, available)"
             [disabled]="confirmed.pick.length === 0"><i class="fa fa-arrow-left"></i>
-      <mat-icon>remove_circle</mat-icon>
+      <mat-icon>remove_circle_outline</mat-icon>
     </button>
 
-    <button mat-fab extended color="primary" (click)="moveAll()"
+    <button mat-mini-fab color="primary" (click)="moveAll()"
             [disabled]="isAllSelected(available)"><i class="fa fa-arrow-right"></i><i class="fa fa-arrow-right"></i>
       <mat-icon>fast_forward</mat-icon>
     </button>
 
-    <button mat-fab extended color="primary" (click)="removeAll()"
+    <button mat-mini-fab color="primary" (click)="removeAll()"
             [disabled]="isAllSelected(confirmed)"><i class="fa fa-arrow-left"></i><i class="fa fa-arrow-left"></i>
       <mat-icon>fast_rewind</mat-icon>
     </button>
 
   </div>
 
-  <div class="listbox">
+  <div class="list-box">
     <p>{{targetName}}</p>
     <div class="record-picker">
       <ul [ngStyle]="{'max-height': height, 'min-height': height}" [ngClass]="{over:confirmed.dragOver}"

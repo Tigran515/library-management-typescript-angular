@@ -19,5 +19,5 @@ export class LoginButtonComponent implements OnInit {
   routeToLogin():void{
     this.router.navigate(["/login"]);
 }
-  protected readonly async = asyncScheduler;
+  protected readonly _async = asyncScheduler;
 }

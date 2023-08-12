@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {BookService} from "../../service/book.service";
 import {MatDialogRef} from "@angular/material/dialog";
 import {Book} from "../../model/book";
@@ -23,27 +23,28 @@ export class AddBookModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authorService.findAll().subscribe((response: any) => {
+    this.authorService.findAll().subscribe((response: any): void => {
       this.authors = response.content;
     });
     this.bookForm = this.fb.group({
       title: ['', [Validators.required]],
-      published: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
-      isbn: ['', [Validators.required]], //@TODO: add validation for 13 digits ?
-      // /^[\d\-]{13}$/
-      authorId: ['', [Validators.required]]
+      published: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$'), Validators.minLength(4), Validators.maxLength(4),Validators.max(2023)]], // change to current Date
+      isbn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
     })
   }
 
-  save() {
-    if (this.bookForm.valid) {
-      const AUTHOR_ID = this.bookForm.value.authorId;
+//@TODO: BUG: VALIDATE custom-list-box authorList, should at least contain one value !!!!!!!!!!!
+
+  save(): void {
+    if (this.bookForm.valid && this.confirmed.length > 0) { // double validation
+      const AUTHOR_ID_LIST = this.confirmed.map(author => author.id);
+
       const NEW_BOOK = new Book(
         this.bookForm.value.title,
         this.bookForm.value.published,
         this.bookForm.value.isbn,
       );
-      this.bookService.addBook(NEW_BOOK, AUTHOR_ID).subscribe((result: Book) => {
+      this.bookService.addBook(NEW_BOOK, AUTHOR_ID_LIST).subscribe((result: Book) => {
         this.dialogRef.close(true);
       })
     } else {
@@ -53,5 +54,9 @@ export class AddBookModalComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  public isFormValid():boolean{
+    return this.bookForm.valid && this.confirmed.length > 0;
   }
 }

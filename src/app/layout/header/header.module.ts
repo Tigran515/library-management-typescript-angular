@@ -5,6 +5,7 @@ import { HeaderRoutingModule } from './header-routing.module';
 import { HeaderComponent } from './header.component';
 import {NavTabModule} from "../../components/nav-tab/nav-tab.module";
 import {LoginButtonModule} from "../../components/login-button/login-button.module";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {LoginButtonModule} from "../../components/login-button/login-button.modu
     CommonModule,
     HeaderRoutingModule,
     NavTabModule,
-    LoginButtonModule
+    LoginButtonModule,
+    MatIconModule
   ]
 })
 export class HeaderModule { }

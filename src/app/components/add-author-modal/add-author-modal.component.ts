@@ -21,21 +21,21 @@ export class AddAuthorModalComponent implements OnInit { //@TODO: rename the com
 
   ngOnInit(): void {
     this.authorForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
-      lname: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
-      sname: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
-      born: ['', [Validators.required, Validators.maxLength(4),Validators.pattern(/^[0-9]+$/)]]
+      name: ['', [Validators.required, Validators.pattern(/^[^0-9]+$/)]],
+      lname: ['', [Validators.pattern(/^[^0-9]+$/)]],
+      sname: ['', [Validators.pattern(/^[^0-9]+$/)]],
+      born: ['', [Validators.required, Validators.maxLength(4), Validators.pattern(/^[0-9]+$/), Validators.max(2023)]]
     });
   };
 
-  save() {
+  save(): void {
     if (this.authorForm.valid) {
-      const NEW_AUTHOR = new Author( //@TODO: chang to lowercase
+      const NEW_AUTHOR: Author = new Author( //@TODO: chang to lowercase
         this.authorForm.value.name,
         this.authorForm.value.lname,
         this.authorForm.value.sname,
         this.authorForm.value.born);
-
+      console.log("NEW_AUTHOR", NEW_AUTHOR);
       this.authorService.addAuthor(NEW_AUTHOR).subscribe(() => {
         this.dialogRef.close(true);
       })

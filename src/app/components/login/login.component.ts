@@ -7,6 +7,7 @@ import {Subscription} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {User} from "../../model/user";
 import {NavigationService} from "../../service/navigation.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,6 @@ import {NavigationService} from "../../service/navigation.service";
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  public previousUrl: string = "";
   @Input() error: string | null | undefined;
 
   constructor(private router: Router, private authenticationService: AuthenticationService, private fb: FormBuilder, private navigationService: NavigationService) {
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: ['', [Validators.required, Validators.minLength(1)]],//add Validator
   });
 
-  submit() { //*additional
+  submit(): void { //*additional
     if (this.form.valid) {
       this.onLogin(this.form.value);
     }
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     //   console.log("previousUrl ", previousUrl);
     //   // this.previousUrl = previousUrl;
     // })
-
     if (this.authenticationService.isLoggedIn()) {
       this.router.navigateByUrl("/");
     } else {
@@ -49,62 +48,24 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe()); // to avoid having memory leaks
   }
 
-//change to authReq
-  //V1
-//   public onLogin(user: User): void {  // code :( + change to private + add errorResponse
-//     console.log("authReq : ", user);
-//     this.subscriptions.push(
-//       this.authenticationService.login(user).subscribe(
-//         (response: HttpResponse<User>) => {
-//           console.log("RESPONSE ", response);
-//           const TOKEN: string | null = response.headers.get(HeaderType.JWT_TOKEN);
-//
-//           console.log("header ", response.headers);
-//           console.log("TOKEN ", TOKEN);
-//           console.log("resp body ", response.body);
-//           //bad code
-//           if (TOKEN != null) {
-//             this.authenticationService.saveToken(TOKEN);
-//             //bad code
-//             if (response.body != null) {
-//               this.authenticationService.addUserToLocalCache(response.body);
-//               console.log("ALL CLEAR ")
-//               this.router.navigate(['/']);
-//             }
-//           }
-//           // add else condition
-//         },
-//         (err: HttpErrorResponse) => {
-//           console.log("error ", err);
-//         }
-//       )
-//     );
-//   }
-
-  //V2
   public onLogin(authenticationRequest: AuthenticationRequestDto): void {
     console.log("authReq : ", authenticationRequest);
     const observer = {
-      next: (response: HttpResponse<User>) => {
-        const TOKEN: string | null = response.headers.get('JWT-Token');
-
+      next: (response: HttpResponse<User>): void => {
+        const TOKEN: string | null = response.headers.get(environment.server.JWT_TOKEN);
         console.log("resp body ", response.body);
-
         if (TOKEN != null) {
           this.authenticationService.saveToken(TOKEN);
           if (response.body != null) {
             this.authenticationService.addUserToLocalCache(response.body);
-            console.log("ALL CLEAR ");
-            // this.router.navigate(['/']); //@TODO: redirect to the previous window
-            console.log("NAV", this.navigationService.getPreviousUrl());
             this.router.navigate([this.navigationService.getPreviousUrl()]);
           }
         }
       },
-      error: (error: any) => {
+      error: (error: any):void => {
         console.error("An error occurred: ", error);
       },
-      complete: () => {
+      complete: ():void => {
         console.log("The observable has completed.");
       },
     };

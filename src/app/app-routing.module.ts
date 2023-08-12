@@ -8,7 +8,7 @@ const ROUTES: Routes = [
   {path: 'books', loadChildren: () => import('./components/book-list/book-list.module').then(m => m.BookListModule)},
   {path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)},
     // ,canActivate:[authGuard]},
-
+  {path: 'profile', loadChildren: ()=> import('./components/user-profile/user-profile.module').then(m=>m.UserProfileModule),canActivate:[authGuard]},
   // {path: '', loadChildren: () => import('./layout/header/header.module').then(m => m.HeaderModule),pathMatch:'prefix'},
   // {path: '', loadChildren: () => import('./layout/footer/footer.module').then(m => m.FooterModule)},
   {

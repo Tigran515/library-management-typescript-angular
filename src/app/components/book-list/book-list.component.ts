@@ -19,15 +19,13 @@ export class BookListComponent {
   };
 
   ngOnInit() {
-    // this.bookService.findAll().subscribe((response: any) => {
-    //     this.books = response.content;
-    //     this.isLoading = false;
-    //   }
-    // );
     this.fetchBookList();
+    console.log(this.auth.isLoggedIn());
   };
 
   openAddBookDialog() {
+    console.log(this.auth.isLoggedIn());
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -41,6 +39,8 @@ export class BookListComponent {
   };
 
   openDeleteBookDialog(book: Book) {
+    console.log(this.auth.isLoggedIn());
+
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         message: `Do you want to delete ${book.title} ${book.published} book ? `,

@@ -3,34 +3,28 @@
 <mat-dialog-content>
   <form [formGroup]="bookForm">
     <mat-form-field>
+      <mat-label>Title</mat-label>
       <input matInput placeholder="Title" formControlName="title"/>
+      <mat-error *ngIf="bookForm.get('title')?.hasError('required')">Title is required</mat-error>
     </mat-form-field>
     <br>
     <mat-form-field>
+      <mat-label>Published</mat-label>
       <input matInput type="number" placeholder="Published" formControlName="published"/>
+      <mat-error *ngIf="bookForm.get('published')?.hasError('max')">Input a valid number</mat-error>
+      <mat-error *ngIf="bookForm.get('published')?.hasError('required')">Filed is required</mat-error>
     </mat-form-field>
     <br>
     <mat-form-field>
+      <mat-label>ISBN</mat-label>
       <input matInput placeholder="ISBN" formControlName="isbn"/>
+      <mat-error *ngIf="bookForm.get('isbn')?.hasError('required')">ISBN is required</mat-error>
+      <mat-error *ngIf="bookForm.get('isbn')?.hasError('minLength')">ISBN should contain 13 digits</mat-error>
+      <mat-error *ngIf="bookForm.get('isbn')?.hasError('maxLength')">ISBN should contain 13 digits</mat-error>
     </mat-form-field>
-    <!--    <mat-error *ngIf="bookForm.get('isbn')?.hasError('required')">ISBN is required</mat-error>-->
-    <!--    <mat-error *ngIf="bookForm.get('isbn')?.hasError('pattern')">ISBN should contain 13 digits</mat-error>-->
     <br>
-    <!--    authorId selector-->
-    <mat-form-field appearance="fill">
-      <mat-label>Author</mat-label>
-      <mat-select formControlName="authorId" required>
-        <mat-option>--</mat-option>
-        <mat-option *ngFor="let author of authors" [value]="author.id">
-          {{author.name}} {{author.lname}} {{author.sname}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <app-custom-listbox [source]="authors" [(destination)]="confirmed" display="name" key="id"></app-custom-listbox>
-    <!--    <div>-->
-    <!--      <app-custom-listbox [source]="authors" [(destination)]="confirmed" display="name" key="id" ></app-custom-listbox>-->
-    <!--    </div>-->
+    <app-custom-listbox [source]="authors" [(destination)]="confirmed" display="fullName" key="id"></app-custom-listbox>
+    <!--    add error notifier here-->
   </form>
 </mat-dialog-content>
 
@@ -39,7 +33,7 @@
   <button class="mat-raised-button"
           mat-button
           color="primary"
-          [disabled]="!bookForm.valid"
+          [disabled]="!isFormValid()"
           (click)="save()">
     Save
   </button>

@@ -9,6 +9,6 @@ textarea {
 }
 
 mat-dialog-content{
-  width: 500px;
-  height: 500px;
+  width: 900px;
+  height: 800px;
 }

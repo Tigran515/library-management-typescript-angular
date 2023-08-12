@@ -14,9 +14,6 @@
     <br>
     <mat-form-field>
       <input matInput placeholder="Last Name" formControlName="lname"/>
-      <mat-error *ngIf="authorForm.get('lname')?.hasError('required')">
-        Last Name is required.
-      </mat-error>
       <mat-error *ngIf="authorForm.get('lname')?.hasError('pattern')">
         Last Name should only contain alphabetical characters.
       </mat-error>
@@ -24,9 +21,6 @@
     <br>
     <mat-form-field>
       <input matInput placeholder="Sure Name" formControlName="sname"/>
-      <mat-error *ngIf="authorForm.get('sname')?.hasError('required')">
-        Sure Name is required.
-      </mat-error>
       <mat-error *ngIf="authorForm.get('sname')?.hasError('pattern')">
         Sure Name should only contain alphabetical characters.
       </mat-error>
@@ -39,6 +33,9 @@
       </mat-error>
       <mat-error *ngIf="authorForm.get('born')?.hasError('pattern')">
         Born should be a number.
+      </mat-error>
+      <mat-error *ngIf="authorForm.get('born')?.hasError('max')">
+        Should be a valid year
       </mat-error>
     </mat-form-field>
     <br>

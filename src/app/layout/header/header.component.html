@@ -1,10 +1,13 @@
 <header class="header-container">
   <div class="container">
     <div class="user-profile">
-<!--      <div *ngIf="auth.user$ | async as user">-->
+      <!--      <div *ngIf="auth.user$ | async as user">-->
+      <div *ngIf="auth.isLoggedIn()">
         <h2>Welcome</h2>
-<!--        <span>{{ user.email }}</span>-->
-<!--      </div>-->
+        <span> {{auth.getUserInformation()?.name}} {{auth.getUserInformation()?.sname}}</span>
+        <br>
+        <a href="/profile"><mat-icon>account_circle</mat-icon></a>
+      </div>
     </div>
 
     <div class="login-wrapper">
