@@ -28,6 +28,16 @@ export class BookService {
     return this.http.post<Book>(this.booksURL + "/post", requestBody)
       .pipe(catchError(this.errorHandlerService.handleError<Book>('error while posting a book', book)));
   };
+  //
+  // //Please note that authorId is set to be undefined because of the Angular CLI
+  // public addBook(book: Book, authorId: (number | undefined)[]): Observable<Book> {
+  //   const requestBody = {
+  //     bookDTO: book,
+  //     authorId: authorId
+  //   };
+  //   return this.http.post<Book>(this.booksURL + "/post", requestBody)
+  //     .pipe(catchError(this.errorHandlerService.handleError<Book>('error while posting a book', book)));
+  // };
 
   public deleteBook(id: number): Observable<unknown> {
     const url = `${this.booksURL}/delete/${id}`;

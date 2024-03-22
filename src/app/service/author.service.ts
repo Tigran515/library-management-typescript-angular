@@ -30,11 +30,18 @@ export class AuthorService {
       .pipe(catchError(this.errorHandlerService.handleError<Author>('addAuthor', author)))
   };
 
-  public updateAuthorFields(id: number, author: Author) {
-    const URL = `${this.authorsURL}/update/${id}`;
+  // public updateAuthorFields(id: number, author: Author) { //@TODO: update new implementations
+  //   const URL = `${this.authorsURL}/update/${id}`;
+  //   console.log("Author details:",author);
+  //   return this.http.put(URL, author).pipe(
+  //     catchError(this.errorHandlerService.handleError('updateAuthor'))
+  //   );
+  // };
+  public updateAuthorFields(author: Author) { //@TODO: update new implementations
+    const URL: string = `${this.authorsURL}/update`;
 
-    return this.http.patch(URL, author).pipe(
-      catchError(this.errorHandlerService.handleError('patchAuthor'))
+    return this.http.put(URL, author).pipe(
+      catchError(this.errorHandlerService.handleError('updateAuthor'))
     );
   };
 

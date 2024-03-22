@@ -10,6 +10,7 @@ import {AuthenticationService} from "../service/authentication.service";
 import {AuthorService} from "../service/author.service";
 import {BookService} from "../service/book.service";
 import {Router} from "@angular/router";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -18,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(httpRequest: HttpRequest<any>, httpHandler: HttpHandler): Observable<HttpEvent<any>> {
-    //if the current URL includes this login, we don't need to do anything with it, just return
+    //if the current URL includes this login, we don't need to do anything with it,then just to return
     if (httpRequest.url.includes(`${this.authenticationService.host}/auth/authenticate`)) {
       console.log("httpRequest is", httpRequest);
       return httpHandler.handle(httpRequest);
@@ -34,11 +35,13 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     this.authenticationService.loadToken();
-    const TOKEN = this.authenticationService.getToken();
-    if (this.authenticationService.isTokenExpired(TOKEN)) {
-      this.router.navigate(['/']);
+    const TOKEN: string | null = this.authenticationService.getToken();
+    if (this.authenticationService.isTokenExpired(TOKEN)) { //NOTE EXPIRED TOKEN IS HANDLED here,this will work only if the request is not from above
+      this.authenticationService.logOut();
+      this.router.navigate(['/login']);
+      // this.router.navigate(['/']);
     }
-    const REQUEST = httpRequest.clone({setHeaders: {Authorization: `Bearer ${TOKEN}`}}); //change to HeaderType.Authorization
+    const REQUEST: HttpRequest<any> = httpRequest.clone({setHeaders: {Authorization: `${environment.authentication.TOKEN_TYPE}${TOKEN}`}}); //change to HeaderType.Authorization
     console.log("request +token", REQUEST);
     return httpHandler.handle(REQUEST);
   }

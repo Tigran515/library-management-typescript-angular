@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterEvent} from "@angular/router";
 import {filter} from "rxjs";
 import {NavigationService} from "./service/navigation.service";
+import {AuthenticationService} from "./service/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,11 @@ import {NavigationService} from "./service/navigation.service";
 export class AppComponent implements OnInit {
   public title: string;
 
-  constructor(private router: Router,public navigation:NavigationService) { //@TODO: injection can be removed
+  constructor(private router: Router, public navigation: NavigationService) { //@TODO: injection can be removed
     this.title = 'Welcome to The Quiet Corner Library';
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
     this.navigation.startSaveHistory();
   }
 }

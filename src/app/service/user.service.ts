@@ -13,7 +13,6 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-
   //create methods for the future integration
 
   // public getUsers(): Observable<User[] | HttpErrorResponse>{

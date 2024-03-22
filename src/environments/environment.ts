@@ -9,7 +9,7 @@ export const environment = {
 
   server: {
     HOST: 'http://localhost:8888',
-    JWT_TOKEN:'JWT-Token'
+    JWT_TOKEN: 'JWT-Token'
   },
   allowedURLs: [
     '/authors/post',
@@ -20,6 +20,7 @@ export const environment = {
     '/books/delete/*'
   ],
   authentication: {
+    TOKEN_TYPE: 'Bearer ', //NOTE:WARNING! do not remove space after word Bearer.
     TOKEN: 'token',  // //@TODO: rename the token for security reason
     USER: 'user',
     USERS: 'users',

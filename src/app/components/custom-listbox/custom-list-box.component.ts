@@ -61,3 +61,4 @@ export class CustomListBoxComponent extends DualListComponent {
 
   protected readonly name = name;
 }
+

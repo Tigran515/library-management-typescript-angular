@@ -1,12 +1,13 @@
 <div class="container">
-   <div class="logo">
-     <img src="/assets/pngegg.png" alt="Logo">
-        <h1 class="logo-text">{{title}}</h1>
-      </div>
+  <div class="logo">
+    <a href="/"><img src="/assets/pngegg.png" alt="Logo"></a>
+    <h1 class="logo-text">{{title}}</h1>
+  </div>
   <div class="header-container">
     <app-header></app-header>
   </div>
-      <router-outlet></router-outlet>
-    </div>
-    <footer>
-    </footer>
+  <app-search></app-search>
+  <router-outlet></router-outlet>
+</div>
+<footer>
+</footer>

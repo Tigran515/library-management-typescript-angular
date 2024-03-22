@@ -1,6 +1,7 @@
-.container{
+.container {
   margin-left: 30px;
 }
+
 .logo {
   display: flex;
   align-items: center;
@@ -15,8 +16,9 @@
 }
 
 .logo-text {
-  font-size: 2rem;
-  color: white;
+  font-family: "Book Antiqua", fantasy;
+  font-size: 1rem;
+  color: darkorchid;
 }
 
 /*.header-container{*/

@@ -11,4 +11,5 @@ export class Author {
     this.sname = sname;
     this.born = born;
   }
+
 }

@@ -16,10 +16,15 @@ export class AddBookModalComponent implements OnInit {
   authors: Author[] = [];
   confirmed: Author[] = [];
 
+  stateCtrl: FormControl;
+  filteredAuthors: Author[] = []; // Add this line
+
   constructor(private bookService: BookService,
               private authorService: AuthorService,
               private fb: FormBuilder,
-              private dialogRef: MatDialogRef<AddBookModalComponent>) {
+              private dialogRef: MatDialogRef<AddBookModalComponent>
+  ) {
+    this.stateCtrl = new FormControl();
   }
 
   ngOnInit(): void {
@@ -28,9 +33,26 @@ export class AddBookModalComponent implements OnInit {
     });
     this.bookForm = this.fb.group({
       title: ['', [Validators.required]],
-      published: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$'), Validators.minLength(4), Validators.maxLength(4),Validators.max(2023)]], // change to current Date
+      published: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$'), Validators.minLength(4), Validators.maxLength(4), Validators.max(2023)]], // change to current Date
       isbn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
-    })
+    });
+
+
+    this.stateCtrl.valueChanges.subscribe((value) => {
+      this.filteredAuthors = this.filterAuthors(value);
+    });
+
+
+  }
+
+  filterAuthors(value: string): Author[] {
+    const filterValue = value.toLowerCase();
+    return this.authors.filter(
+      (author) =>
+        author.name.toLowerCase().includes(filterValue) ||
+        author.lname.toLowerCase().includes(filterValue) ||
+        author.sname.toLowerCase().includes(filterValue)
+    );
   }
 
 //@TODO: BUG: VALIDATE custom-list-box authorList, should at least contain one value !!!!!!!!!!!
@@ -56,7 +78,7 @@ export class AddBookModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public isFormValid():boolean{
+  public isFormValid(): boolean {
     return this.bookForm.valid && this.confirmed.length > 0;
   }
 }

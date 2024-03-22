@@ -22,9 +22,9 @@ export class AddAuthorModalComponent implements OnInit { //@TODO: rename the com
   ngOnInit(): void {
     this.authorForm = this.fb.group({
       name: ['', [Validators.required, Validators.pattern(/^[^0-9]+$/)]],
-      lname: ['', [Validators.pattern(/^[^0-9]+$/)]],
-      sname: ['', [Validators.pattern(/^[^0-9]+$/)]],
-      born: ['', [Validators.required, Validators.maxLength(4), Validators.pattern(/^[0-9]+$/), Validators.max(2023)]]
+      lname: [null,[Validators.pattern(/^[^0-9]+$/)]],
+      sname: [null, [Validators.pattern(/^[^0-9]+$/)]],
+      born: [null, [Validators.maxLength(4), Validators.pattern(/^[0-9]+$/), Validators.max(2023)]]
     });
   };
 

@@ -48,7 +48,7 @@ export class AuthenticationService {
     localStorage.setItem(environment.authentication.TOKEN, token); //@TODO: rename token for security reason
   }
 
-  public addUserToLocalCache(user: User): void {
+  public addUserToLocalCache(user: User): void { // @FIXME: can be saved in a securer place
     localStorage.setItem(environment.authentication.USER, JSON.stringify(user)); //localStorage only accepts String
   }
 
@@ -118,7 +118,7 @@ export class AuthenticationService {
 
     if (this.token != null && this.token !== '') { //@TODO: manage this nested statements
       if (this.jwtHelper.decodeToken(this.token).sub != null || '') {
-        if (!this.jwtHelper.isTokenExpired(this.token)) { //can be in the same line in previous statement
+        if (!this.jwtHelper.isTokenExpired(this.token)) { //can be in the same line in a previous statement
           this.loggedInUsername = this.jwtHelper.decodeToken(this.token).sub;
           return true;
         }

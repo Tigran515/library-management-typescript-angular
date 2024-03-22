@@ -1,4 +1,4 @@
-export class UserDto {
+export class UserDto { //@TODO: !HIGH PRIORITY : remove THIS DTO !!!!!!!!!!!!!!!!!!
   username: string; //username
   name: string;
   lname: string;

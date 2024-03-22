@@ -11,6 +11,8 @@ import {HeaderModule} from "./layout/header/header.module";
 import {AuthenticationService} from "./service/authentication.service";
 import {CoreModule} from "./core/core.module";
 import {NavigationService} from "./service/navigation.service";
+import {SearchModule} from "./components/search/search.module";
+import {SearchService} from "./service/search.service";
 
 @NgModule({
   declarations: [ // declarations: [] *Component,Directive,Pipe
@@ -24,14 +26,14 @@ import {NavigationService} from "./service/navigation.service";
     BrowserAnimationsModule,
     MatTabsModule, //@TODO: remove
     HeaderModule,
-    //
+    SearchModule
   ],
   exports: [], // exports: [] *PublicComponent,PublicDirective,PublicPipe
 
   // providers[] *Service,Guard | alternative @Injectable ("root")
-  providers: [AuthenticationService,NavigationService],
+  providers: [AuthenticationService, NavigationService, SearchService],
 
-  bootstrap: [AppComponent] // *Defines a component that's used to initially load your application
+  bootstrap: [AppComponent] // * Defines a component that is used to initially load your application
 })
 export class AppModule {
 }

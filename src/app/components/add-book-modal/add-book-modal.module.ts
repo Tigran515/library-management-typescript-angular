@@ -9,6 +9,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 import {AngularDualListBoxModule} from 'angular-dual-listbox';
 import {CustomListboxModule} from "../custom-listbox/custom-listbox.module";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [AddBookModalComponent],
@@ -21,7 +22,8 @@ import {CustomListboxModule} from "../custom-listbox/custom-listbox.module";
     MatButtonModule,
     MatSelectModule,
     AngularDualListBoxModule,
-    CustomListboxModule
+    CustomListboxModule,
+    MatAutocompleteModule
   ],
   exports: [AddBookModalComponent]
 })
