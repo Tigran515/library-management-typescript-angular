@@ -1,4 +1,4 @@
-export class SearchCriteriaDto {
+export class SearchCriteriaDto { //FIXME: rename
   private authorName: string | undefined;
   private authorLname: string | undefined;
   private authorSname: string | undefined;
@@ -6,6 +6,14 @@ export class SearchCriteriaDto {
   private isbn: string | undefined;
   private detail: string | undefined;
 
+
+  constructor(authorName: string | undefined = undefined, authorLname: string | undefined = undefined, authorSname: string | undefined = undefined, bookTitle: string | undefined = undefined, isbn: string | undefined = undefined) {
+    this.authorName = authorName;
+    this.authorLname = authorLname;
+    this.authorSname = authorSname;
+    this.bookTitle = bookTitle;
+    this.isbn = isbn;
+  }
 
   set setAuthorName(value: string | undefined) {
     this.authorName = value;
