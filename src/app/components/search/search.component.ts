@@ -9,6 +9,7 @@ import {SearchCriteriaDto} from "../../dto/search-criteria-dto";
 })
 export class SearchComponent {
   searchTerm: string = '';
+  advancedSearch: SearchCriteriaDto | undefined;
   //add property for advanced search
   results: any[] = []; //NOTE: this should be empty [] or undefined
   isLoading: boolean = false;
@@ -20,17 +21,20 @@ export class SearchComponent {
   onSearch(searchTermEvent: string): void {
     this.searchTerm = searchTermEvent; //can be set directly
 
-    const searchCriteria: SearchCriteriaDto = new SearchCriteriaDto();
-    searchCriteria.setDetail = searchTermEvent;
+    const SEARCH_CRITERIA: SearchCriteriaDto = new SearchCriteriaDto();
+    SEARCH_CRITERIA.setDetail = searchTermEvent;
 
-    this.searchService.findByTerm(searchCriteria).subscribe((response: any) => {
+    this.searchService.findByTerm(SEARCH_CRITERIA).subscribe((response: any) => {
         console.log("response ", response);
       }
     )
     console.log("this.searchTermEvent ", this.searchTerm);
   }
 
-//add onAdvancedSearch()
+  onAdvancedSearch(searchCriteria: SearchCriteriaDto): void {
+    this.advancedSearch = searchCriteria;
+    console.log("this.advancedSearch in SearchComponent ", this.advancedSearch);
+  }
 
 //add fetchResults()
 }
