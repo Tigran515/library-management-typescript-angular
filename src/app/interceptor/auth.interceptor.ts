@@ -11,11 +11,12 @@ import {AuthorService} from "../service/author.service";
 import {BookService} from "../service/book.service";
 import {Router} from "@angular/router";
 import {environment} from "../../environments/environment";
+import {SearchService} from "../service/search.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authenticationService: AuthenticationService, private authorService: AuthorService, private booksService: BookService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, private authorService: AuthorService, private booksService: BookService, private searchService: SearchService, private router: Router) {
   }
 
   intercept(httpRequest: HttpRequest<any>, httpHandler: HttpHandler): Observable<HttpEvent<any>> {
@@ -31,6 +32,9 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     if (httpRequest.method === "GET" && httpRequest.url.includes(`${this.booksService.booksURL}`)) {
+      return httpHandler.handle(httpRequest);
+    }
+    if (httpRequest.method === "GET" && httpRequest.url.includes(`${this.searchService.searchURL}`)) { // bookAuthor
       return httpHandler.handle(httpRequest);
     }
 
