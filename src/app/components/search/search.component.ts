@@ -24,16 +24,19 @@ export class SearchComponent {
     const SEARCH_CRITERIA: SearchCriteriaDto = new SearchCriteriaDto();
     SEARCH_CRITERIA.setDetail = searchTermEvent;
 
-    this.searchService.findByTerm(SEARCH_CRITERIA).subscribe((response: any) => {
-        console.log("response ", response);
-      }
-    )
+    // this.searchService.findByTerm(SEARCH_CRITERIA).subscribe((response: any) => {
+    //     console.log("response ", response);
+    //   }
+    // )
     console.log("this.searchTermEvent ", this.searchTerm);
   }
 
   onAdvancedSearch(searchCriteria: SearchCriteriaDto): void {
     this.advancedSearch = searchCriteria;
     console.log("this.advancedSearch in SearchComponent ", this.advancedSearch);
+    this.searchService.findByTerm().subscribe((response: any) => {
+      console.log("response ", response);
+    })
   }
 
 //add fetchResults()

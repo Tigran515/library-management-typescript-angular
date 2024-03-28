@@ -13,9 +13,10 @@ export class SearchService {
     this.searchURL = environment.server.HOST + "/bookAuthor/search"
   };
 
-  public findByTerm(searchCriteria: SearchCriteriaDto) {
-    return this.http.post<any>(this.searchURL, searchCriteria)
-      .pipe(catchError(this.errorHandlerService.handleError<any>("find by term", searchCriteria)))
+  public findByTerm() {
+    // return this.http.post<any>(this.searchURL, searchCriteria)
+    // return this.http.get<any>(this.searchURL+"/leo")
+    //   .pipe(catchError(this.errorHandlerService.handleError<any>("find by term")))
   }
 
 }
