@@ -1,41 +1,65 @@
 export class SearchCriteriaDto { //FIXME: rename
-  private authorName: string | undefined;
-  private authorLname: string | undefined;
-  private authorSname: string | undefined;
-  private bookTitle: string | undefined;
-  private isbn: string | undefined;
-  private detail: string | undefined;
+  private _authorName: string | undefined;
+  private _authorLname: string | undefined;
+  private _authorSname: string | undefined;
+  private _bookTitle: string | undefined;
+  private _isbn: string | undefined;
+  private _detail: string | undefined;
 
 
   constructor(authorName: string | undefined = undefined, authorLname: string | undefined = undefined, authorSname: string | undefined = undefined, bookTitle: string | undefined = undefined, isbn: string | undefined = undefined) {
-    this.authorName = authorName;
-    this.authorLname = authorLname;
-    this.authorSname = authorSname;
-    this.bookTitle = bookTitle;
-    this.isbn = isbn;
+    this._authorName = authorName;
+    this._authorLname = authorLname;
+    this._authorSname = authorSname;
+    this._bookTitle = bookTitle;
+    this._isbn = isbn;
   }
 
   set setAuthorName(value: string | undefined) {
-    this.authorName = value;
+    this._authorName = value;
   }
 
   set setAuthorLname(value: string | undefined) {
-    this.authorLname = value;
+    this._authorLname = value;
   }
 
   set setAuthorSname(value: string | undefined) {
-    this.authorSname = value;
+    this._authorSname = value;
   }
 
   set setBookTitle(value: string | undefined) {
-    this.bookTitle = value;
+    this._bookTitle = value;
   }
 
   set setISBN(value: string | undefined) {
-    this.isbn = value;
+    this._isbn = value;
   }
 
   set setDetail(value: string | undefined) {
-    this.detail = value;
+    this._detail = value;
+  }
+
+  get getAuthorName(): string | undefined {
+    return this._authorName;
+  }
+
+  get getAuthorLname(): string | undefined {
+    return this._authorLname;
+  }
+
+  get getAuthorSname(): string | undefined {
+    return this._authorSname;
+  }
+
+  get getBookTitle(): string | undefined {
+    return this._bookTitle;
+  }
+
+  get getISBN(): string | undefined {
+    return this._isbn;
+  }
+
+  get getDetail(): string | undefined {
+    return this._detail;
   }
 }

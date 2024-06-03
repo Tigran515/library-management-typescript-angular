@@ -25,8 +25,7 @@ import {SearchService} from "./service/search.service";
     RouterOutlet,
     BrowserAnimationsModule,
     MatTabsModule, //@TODO: remove
-    HeaderModule,
-    SearchModule
+    HeaderModule
   ],
   exports: [], // exports: [] *PublicComponent,PublicDirective,PublicPipe
 

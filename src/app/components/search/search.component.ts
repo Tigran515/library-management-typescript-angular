@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {SearchService} from "../../service/search.service";
 import {SearchCriteriaDto} from "../../dto/search-criteria-dto";
+import {BookAuthorDTO} from "../../dto/bookAuthor.dto";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -10,33 +12,32 @@ import {SearchCriteriaDto} from "../../dto/search-criteria-dto";
 export class SearchComponent {
   searchTerm: string = '';
   advancedSearch: SearchCriteriaDto | undefined;
-  //add property for advanced search
-  results: any[] = []; //NOTE: this should be empty [] or undefined
+  results: BookAuthorDTO[] = [];
   isLoading: boolean = false;
 
-  constructor(private searchService: SearchService) {
-
+  constructor(private searchService: SearchService, private router: Router) {
   }
 
   onSearch(searchTermEvent: string): void {
     this.searchTerm = searchTermEvent; //can be set directly
-
     const SEARCH_CRITERIA: SearchCriteriaDto = new SearchCriteriaDto();
     SEARCH_CRITERIA.setDetail = searchTermEvent;
-
-    // this.searchService.findByTerm(SEARCH_CRITERIA).subscribe((response: any) => {
-    //     console.log("response ", response);
+    this.searchService.updateSearchTerm(searchTermEvent);//added
+    // this.searchService.searchByTerm(SEARCH_CRITERIA).subscribe((response: BookAuthorDTO[]) => {
+    //     this.results = response;
     //   }
-    // )
-    console.log("this.searchTermEvent ", this.searchTerm);
+    this.searchService.searchByTerm(SEARCH_CRITERIA).subscribe((response: BookAuthorDTO[]) => {
+      this.searchService.updateSearchResults(response);
+    }
+  );
+    this.router.navigate(['/search']);
   }
 
   onAdvancedSearch(searchCriteria: SearchCriteriaDto): void {
     this.advancedSearch = searchCriteria;
-    console.log("this.advancedSearch in SearchComponent ", this.advancedSearch);
-    this.searchService.findByTerm().subscribe((response: any) => {
-      console.log("response ", response);
-    })
+    this.searchService.advancedSearch(searchCriteria).subscribe((response: BookAuthorDTO[]): void => {
+      this.results = response;
+    });
   }
 
 //add fetchResults()

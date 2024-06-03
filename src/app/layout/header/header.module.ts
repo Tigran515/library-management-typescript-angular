@@ -6,6 +6,7 @@ import { HeaderComponent } from './header.component';
 import {NavTabModule} from "../../components/nav-tab/nav-tab.module";
 import {LoginButtonModule} from "../../components/login-button/login-button.module";
 import {MatIconModule} from "@angular/material/icon";
+import {SearchModule} from "../../components/search/search.module";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {MatIconModule} from "@angular/material/icon";
     HeaderRoutingModule,
     NavTabModule,
     LoginButtonModule,
-    MatIconModule
+    MatIconModule,
+    SearchModule,
   ]
 })
 export class HeaderModule { }

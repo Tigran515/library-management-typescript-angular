@@ -11,6 +11,7 @@ const ROUTES: Routes = [
   {path: 'profile', loadChildren: ()=> import('./components/user-profile/user-profile.module').then(m=>m.UserProfileModule),canActivate:[authGuard]},
   // {path: '', loadChildren: () => import('./layout/header/header.module').then(m => m.HeaderModule),pathMatch:'prefix'},
   // {path: '', loadChildren: () => import('./layout/footer/footer.module').then(m => m.FooterModule)},
+  {path:'search',loadChildren: ()=> import('./components/search-result/search-result.module').then(m=>m.SearchResultModule)},
   {
     path: '',
     redirectTo: '/books',

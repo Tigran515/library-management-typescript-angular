@@ -5,20 +5,22 @@ import {SearchComponent} from "./search.component";
 import {SearchResultComponent} from "../search-result/search-result.component";
 import {SearchBarComponent} from "../search-bar/search-bar.component";
 import {AdvancedSearchComponent} from "../advanced-search/advanced-search.component";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
     SearchComponent,
     SearchBarComponent,
-    SearchResultComponent,
     AdvancedSearchComponent
   ],
   exports: [
     SearchComponent,
+    SearchBarComponent,
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule
   ]
 })
 export class SearchModule {

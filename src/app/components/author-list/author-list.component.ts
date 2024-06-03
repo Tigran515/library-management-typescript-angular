@@ -37,7 +37,7 @@ export class AuthorListComponent implements OnInit {
     });
   };
 
-  openDeleteAuthorDialog(author: Author) {
+  openDeleteAuthorDialog(author: Author):void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         message: `Do you want to delete ${author.name} ${author.lname} ${author.sname} ? All the books of to this author will be `,
@@ -48,7 +48,7 @@ export class AuthorListComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+    dialogRef.afterClosed().subscribe((confirmed: boolean):void => {
       if (confirmed) {
         this.authorService.deleteAuthor(Number(author.id)).subscribe(() => {
           this.fetchAuthorList();
@@ -58,7 +58,7 @@ export class AuthorListComponent implements OnInit {
 
   };
 
-  openEditAuthorDialog(id: number) {
+  openEditAuthorDialog(id: number):void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -72,7 +72,7 @@ export class AuthorListComponent implements OnInit {
     });
   }
 
-  fetchAuthorList() {
+  fetchAuthorList():void {
     this.authorService.findAll().subscribe((response: any) => {
       this.authors = response.content;
       this.isLoading = false;

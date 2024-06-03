@@ -17,7 +17,7 @@ export class AdvancedSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
-      authorName: ["pxik"],
+      authorName: [null],
       authorLname: [null],
       authorSname: [null],
       bookTitle: [null],
@@ -33,11 +33,7 @@ export class AdvancedSearchComponent implements OnInit {
       this.searchForm.value.bookTitle,
       this.searchForm.value.isbn,
     );
-    console.log("advancedSearch form  ", ADVANCED_SEARCH);
-
     this.advancedFilterEvent.emit(ADVANCED_SEARCH);
-    //or
-    // this.advancedFilterEvent.emit(this.searchForm.value);
   }
 
 }
