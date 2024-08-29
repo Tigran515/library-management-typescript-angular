@@ -1,0 +1,11 @@
+<header>
+  <div *ngIf="auth.isLoggedIn(); else loggedOut">
+    <button mat-raised-button color="accent" (click)="auth.logOut()">
+      Log out
+    </button>
+  </div>
+
+  <ng-template #loggedOut>
+    <button mat-raised-button color="primary" (click)="routeToLogin()">Log in</button>
+  </ng-template>
+</header>

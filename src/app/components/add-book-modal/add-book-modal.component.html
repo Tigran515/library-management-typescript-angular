@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Add Book</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="bookForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" formControlName="title"/>
+      <mat-error *ngIf="bookForm.get('title')?.hasError('required')">Title is required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Published</mat-label>
+      <input matInput type="number" placeholder="Published" formControlName="published"/>
+      <mat-error *ngIf="bookForm.get('published')?.hasError('max')">Input a valid number</mat-error>
+      <mat-error *ngIf="bookForm.get('published')?.hasError('required')">Filed is required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>ISBN</mat-label>
+      <input matInput placeholder="ISBN" formControlName="isbn"/>
+      <mat-error *ngIf="bookForm.get('isbn')?.hasError('required')">ISBN is required</mat-error>
+      <mat-error *ngIf="bookForm.get('isbn')?.hasError('minLength')">ISBN should contain 13 digits</mat-error>
+      <mat-error *ngIf="bookForm.get('isbn')?.hasError('maxLength')">ISBN should contain 13 digits</mat-error>
+    </mat-form-field>
+    <br>
+    <app-custom-listbox [source]="authors" [(destination)]="confirmed" display="fullName" key="id"></app-custom-listbox>
+    <!--    add error notifier here-->
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button class="mat-raised-button"
+          mat-button
+          color="primary"
+          [disabled]="!isFormValid()"
+          (click)="save()">
+    Save
+  </button>
+</mat-dialog-actions>
+
+
+
+<!--<mat-form-field>-->
+<!--  <input type="text" matInput [formControl]="stateCtrl" [matAutocomplete]="auto" placeholder="Author">-->
+<!--</mat-form-field>-->
+
+<!--<mat-autocomplete #auto="matAutocomplete">-->
+<!--  <mat-option *ngFor="let author of filteredAuthors" [value]="author.name">-->
+<!--    {{ author.name }} {{ author.lname }} {{ author.sname }}-->
+<!--  </mat-option>-->
+<!--</mat-autocomplete>-->

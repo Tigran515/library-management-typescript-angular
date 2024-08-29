@@ -1,4 +1,5 @@
 export class Book {
+  id: number | undefined;
   title: string;
   published: number;
   isbn: string;

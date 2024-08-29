@@ -1,0 +1,49 @@
+.header-container{
+}
+.user-profile{
+  height: 60px;
+  width: 200px;
+  margin-left: 85%;
+}
+.nav-tab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.nav-menu a:hover {
+  color: #ccc;
+}
+
+.login-wrapper {
+  height: 50px;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*color: #fff;*/
+  padding: 1rem;
+  margin-left: 90%;
+}
+
+.search-component{
+  margin-left: 80%;
+}

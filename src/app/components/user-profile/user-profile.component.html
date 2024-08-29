@@ -1,0 +1,54 @@
+<!--<div class="user-card">-->
+<!--  <h1 style="color: purple">User information</h1>-->
+<!--  <h2>Name: <span>{{name}}</span></h2>-->
+<!--  <h2>Last name: <span>{{lastName}}</span></h2>-->
+<!--  <h2>Sure name: <span>{{sureName}}</span></h2>-->
+<!--  <input type="text" [(ngModel)]="name">-->
+<!--  <br>-->
+<!--  <button *ngIf="!isEditing" class="mat-raised-button"-->
+<!--          mat-button-->
+<!--          color="primary"-->
+<!--          (click)="isEditing=true"-->
+<!--  >Edit-->
+<!--  </button>-->
+<!--</div>-->
+
+<h1>USER INFO</h1>
+<div *ngIf="isEditing; else editMode">
+  <form [formGroup]="userForm">
+    <span>Name: </span>
+    <mat-form-field>
+      <input type="text" [disabled]="false" matInput formControlName="name"/>
+    </mat-form-field>
+    <br>
+    <span>Last name: </span>
+    <mat-form-field>
+      <input matInput formControlName="lastName"/>
+    </mat-form-field>
+    <br>
+    <span>Surname: </span>
+    <mat-form-field>
+      <input matInput formControlName="surname"/>
+    </mat-form-field>
+    <div class="form-button">
+      <button mat-flat-button color="accent" type="submit">Save</button>
+      <button style="margin-left: 10px" mat-flat-button color="warn" (click)="isEditing=false">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #editMode>
+  <h3><span>Name: </span> {{this.user?.name}}</h3>
+  <h3><span>Last name: </span> {{this.user?.lname}}</h3>
+  <h3><span>Surname: </span> {{this.user?.sname}}</h3>
+  <button *ngIf="!isEditing" class="mat-raised-button"
+          mat-button
+          color="primary"
+          (click)="isEditing=true"
+  >Edit
+  </button>
+  <div style="margin-left: 250px">
+    <button>change the password</button>
+  </div>
+</ng-template>
+

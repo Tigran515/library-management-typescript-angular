@@ -1,0 +1,14 @@
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+mat-dialog-content{
+  width: 900px;
+  height: 800px;
+}

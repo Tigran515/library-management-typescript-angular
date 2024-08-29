@@ -1,0 +1,15 @@
+<!--<h1 *ngIf="searchTerm && !searchResults">-->
+<!--  No results found for "{{ searchTerm }}"-->
+<!--</h1>-->
+<!--<h1 *ngIf="searchTerm">-->
+<!--  Results found for "{{ searchTerm }}"-->
+<!--</h1>-->
+<h1 *ngIf="searchTerm">
+  {{ searchResults?.length === 0 ? 'No results found for "' + searchTerm + '"' : 'Results found for "' + searchTerm + '"' }}
+</h1>
+
+<!--<p> Results found for "{{searchTerm}}"</p>-->
+<p *ngFor="let res of searchResults">
+  {{ res.bookDTO.title }}
+  {{ res.authorDTO.name }} {{ res.authorDTO.lname }}
+</p>

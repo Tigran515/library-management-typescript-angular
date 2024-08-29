@@ -1,0 +1,25 @@
+<header class="header-container">
+  <div class="container">
+    <div class="user-profile">
+      <!--      <div *ngIf="auth.user$ | async as user">-->
+      <div *ngIf="auth.isLoggedIn()">
+        <h2>Welcome</h2>
+        <span> {{auth.getUserInformation()?.name}} {{auth.getUserInformation()?.sname}}</span>
+        <br>
+        <a href="/profile"><mat-icon>account_circle</mat-icon></a>
+      </div>
+    </div>
+
+    <div class="login-wrapper">
+      <app-login-button></app-login-button>
+    </div>
+    <div class="search-component">
+      <app-search></app-search>
+    </div>
+  </div>
+  <div>
+  </div>
+  <div class="nav-tab">
+    <app-nav-tab></app-nav-tab>
+  </div>
+</header>

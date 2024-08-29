@@ -1,32 +1,38 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {RouterOutlet} from "@angular/router";
-// import { AuthorComponent } from './author/author.component';
-import { AuthorListComponent } from './author-list/author-list.component';
-import { AppRoutingModule } from './app-routing.module';
-import {HttpClientModule} from "@angular/common/http";
-import {AuthorService} from "./service/author.service";
-import { BookListComponent } from './book-list/book-list.component';
-import {BookService} from "./service/book.service";
+import {AppRoutingModule} from './app-routing.module';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatTabsModule} from "@angular/material/tabs";
+import {HeaderModule} from "./layout/header/header.module";
+import {AuthenticationService} from "./service/authentication.service";
+import {CoreModule} from "./core/core.module";
+import {NavigationService} from "./service/navigation.service";
+import {SearchModule} from "./components/search/search.module";
+import {SearchService} from "./service/search.service";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    // AuthorComponent,
-    AuthorListComponent,
-    BookListComponent
+  declarations: [ // declarations: [] *Component,Directive,Pipe
+    AppComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        RouterOutlet,
-    ],
-  providers: [AuthorService,BookService], // how about book ?
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+  imports: [// imports: [] *ModuleA,ModuleB,ModuleC
+    CoreModule,
+    BrowserModule,
+    AppRoutingModule,
+    RouterOutlet,
+    BrowserAnimationsModule,
+    MatTabsModule, //@TODO: remove
+    HeaderModule
+  ],
+  exports: [], // exports: [] *PublicComponent,PublicDirective,PublicPipe
 
-//@TODO: add Bootstrap src in angular.json
+  // providers[] *Service,Guard | alternative @Injectable ("root")
+  providers: [AuthenticationService, NavigationService, SearchService],
+
+  bootstrap: [AppComponent] // * Defines a component that is used to initially load your application
+})
+export class AppModule {
+}
