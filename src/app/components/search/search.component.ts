@@ -30,14 +30,17 @@ export class SearchComponent {
       this.searchService.updateSearchResults(response);
     }
   );
-    this.router.navigate(['/search']);
+    // this.router.navigate(['/search']);
+    this.router.navigate(['/search'], { queryParams: { term: searchTermEvent } });
+
   }
 
-  onAdvancedSearch(searchCriteria: SearchCriteriaDto): void {
+  onAdvancedSearch(searchCriteria: SearchCriteriaDto): void { // @TODO: update the method
     this.advancedSearch = searchCriteria;
-    this.searchService.advancedSearch(searchCriteria).subscribe((response: BookAuthorDTO[]): void => {
-      this.results = response;
-    });
+    // this.searchService.advancedSearch(searchCriteria).subscribe((response: BookAuthorDTO[]): void => {
+    //   this.results = response;
+    // });
+    // this.router.navigate(['/search'], { queryParams: { term: advancedCriteria.term } });
   }
 
 //add fetchResults()
